@@ -12,9 +12,9 @@ Panel {
 
   // Settings (shell.json → bar layout entry):
   //   "confirm": false   skip the confirmation for logout / reboot / shutdown
-  //   "pinned": false    stop keeping the button at the far right of the bar
+  //   "pinned": true     keep the button at the far right of the bar (opt-in)
   readonly property bool confirmDestructive: setting("confirm", true) !== false
-  readonly property bool pinned: setting("pinned", true) !== false
+  readonly property bool pinned: setting("pinned", false) === true
 
   // Same commands and availability checks as the built-in Omarchy menu.
   readonly property var allActions: [
@@ -111,8 +111,8 @@ Panel {
   // ---- Keep the button at the far right edge of the bar ----
   // Omarchy appends newly enabled widgets to the end of a section and has no
   // manifest field for a fixed slot, so watch the layout and move back to the
-  // last slot of the right section whenever something lands after us. Only
-  // acts while the button is on the bar, so removing it is respected.
+  // last slot of the right section whenever something lands after us. Opt-in
+  // via the "pinned" setting, and only acts while the button is on the bar.
   function entryId(entry) {
     return typeof entry === "string" ? entry : (entry && entry.id ? String(entry.id) : "")
   }

@@ -1,6 +1,6 @@
 # Power Menu for Omarchy
 
-![Power menu open from the bar](screenshot.png)
+![Power menu open from the bar](preview.png)
 
 A power button for the Omarchy bar. Click it to open a popup with:
 
@@ -18,15 +18,20 @@ A power button for the Omarchy bar. Click it to open a popup with:
 - **Logout**, **Reboot** and **Shutdown** ask for confirmation first.
 - Keyboard: arrows or `j`/`k` to move, `Enter` to select, `1`–`6` for a direct pick, `Esc` to close.
 
+## Requirements
+
+- Omarchy 4 (the Quickshell-based `omarchy-shell` bar)
+- Nothing else to install: it uses the `omarchy-system-*` commands, `systemctl`
+  and the Nerd Font icons that ship with Omarchy
+
 ## Install
 
 ```bash
 omarchy plugin add https://github.com/alshareedah22/omarchy-power-menu.git --enable
 ```
 
-The button places itself at the far right edge of the bar, after the battery,
-and moves back there if another widget is added after it. If you take it off
-the bar it stays off.
+The button is added at the far right edge of the bar. Move it anywhere with
+`omarchy bar move`.
 
 ## Remove
 
@@ -42,10 +47,11 @@ omarchy plugin update blackcode.power-menu
 
 ## Settings
 
-To place the button yourself instead of keeping it at the far right:
+To keep the button pinned at the far right edge, even when other widgets are
+added later (it moves itself back there):
 
 ```bash
-omarchy bar set blackcode.power-menu pinned false --json
+omarchy bar set blackcode.power-menu pinned true --json
 ```
 
 To skip the confirmation for logout, reboot and shutdown, set `confirm` to
