@@ -1,5 +1,7 @@
 # Power Menu for Omarchy
 
+![Power menu open from the bar](screenshot.png)
+
 A power button for the Omarchy bar. Click it to open a popup with:
 
 | # | Action    | Command                   |
