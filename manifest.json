@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "blackcode.power-menu",
+  "name": "Power Menu",
+  "version": "1.0.0",
+  "author": "BlackCode",
+  "license": "MIT",
+  "description": "Bar power button with lock, logout, suspend, hibernate, reboot, and shutdown",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Power Menu",
+    "description": "Lock, logout, suspend, hibernate, reboot, or shut down",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
