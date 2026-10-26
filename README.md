@@ -1,6 +1,6 @@
 # Power Menu for Omarchy
 
-![Power menu open from the bar](preview.png)
+![Power Menu: lock, suspend, reboot or shut down from the Omarchy bar](preview.png)
 
 A power button for the Omarchy bar. Click it to open a popup with:
 
