@@ -157,6 +157,16 @@ Panel {
     anchors.fill: parent
     bar: root.bar
     text: "󰐥"
+    // The color icon; BarIconButton hides the glyph while iconComponent is set.
+    iconComponent: Component {
+      Image {
+        source: Qt.resolvedUrl("icon.svg")
+        sourceSize.width: width * 2
+        sourceSize.height: height * 2
+        fillMode: Image.PreserveAspectFit
+        smooth: true
+      }
+    }
     slotSize: Style.bar.statusSlot
     tooltipText: "Power"
     onPressed: function(b) { root.toggle() }
@@ -205,15 +215,17 @@ Panel {
           width: parent.width
           implicitHeight: Math.max(heroIcon.implicitHeight, heroLabels.implicitHeight)
 
-          Text {
+          Image {
             id: heroIcon
-            textFormat: Text.PlainText
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            text: "󰐥"
-            color: root.fg
-            font.family: root.fontFamily
-            font.pixelSize: Style.font.display
+            source: Qt.resolvedUrl("icon.svg")
+            width: Style.font.display
+            height: Style.font.display
+            sourceSize.width: width * 2
+            sourceSize.height: height * 2
+            fillMode: Image.PreserveAspectFit
+            smooth: true
           }
 
           Column {

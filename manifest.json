@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "blackcode.power-menu",
   "name": "Power Menu",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "BlackCode",
   "license": "MIT",
   "description": "Bar power button with lock, logout, suspend, hibernate, reboot, and shutdown",
