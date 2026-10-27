@@ -48,6 +48,8 @@ The button is added to the right section of the bar. Move it anywhere with
 omarchy plugin remove blackcode.power-menu
 ```
 
+The plugin keeps no files of its own outside its folder, so nothing else is left behind. If its entry stays in the bar layout in `~/.config/omarchy/shell.json`, the bar shows nothing in that spot; you can delete the `{"id": "blackcode.power-menu", ...}` entry by hand.
+
 ## Update
 
 ```bash
