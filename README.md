@@ -29,9 +29,8 @@ A power button for the Omarchy bar. Click it to open a popup with the system upt
 
 ## Requirements
 
-- Omarchy 4 (the Quickshell-based `omarchy-shell` bar)
-- An Omarchy release that ships the `omarchy-system` command (used for logout,
-  reboot and shutdown)
+- Omarchy 4.5 or newer (the Quickshell-based `omarchy-shell` bar and the
+  `omarchy-system` command used for logout, reboot and shutdown)
 - Nothing else to install: it uses `omarchy-system`, `omarchy-system-lock`,
   `systemctl` and the Nerd Font icons that ship with Omarchy
 
