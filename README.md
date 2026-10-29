@@ -39,8 +39,9 @@ A power button for the Omarchy bar. Click it to open a popup with the system upt
 omarchy plugin add https://github.com/alshareedah22/omarchy-power-menu.git --enable
 ```
 
-The button is added to the right section of the bar. Move it anywhere with
-`omarchy bar move`.
+That's all. The button lands at the far right edge of the bar and stays there:
+widgets you add later go to its left. No settings to edit. To put it somewhere
+else, turn pinning off first (see Settings) and then use `omarchy bar move`.
 
 ## Remove
 
@@ -60,13 +61,14 @@ omarchy plugin update blackcode.power-menu
 
 Both settings are keys on the widget's entry in `~/.config/omarchy/shell.json`.
 
-`pinned` (default `false`) keeps the button at the far right edge of the bar,
+`pinned` (default `true`) keeps the button at the far right edge of the bar,
 even when other widgets are added later. It watches `shell.json` and runs
 `omarchy bar move` to put the button back at the end of the right section. It
-does nothing while the button is not on the bar:
+does nothing while the button is not on the bar. Set it to `false` to place the
+button yourself:
 
 ```bash
-omarchy bar set blackcode.power-menu pinned true --json
+omarchy bar set blackcode.power-menu pinned false --json
 ```
 
 `confirm` (default `true`) controls the confirmation for logout, reboot and
