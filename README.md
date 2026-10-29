@@ -7,11 +7,11 @@ A power button for the Omarchy bar. Click it to open a popup with the system upt
 | # | Action    | Command                   |
 |---|-----------|---------------------------|
 | 1 | Lock      | `omarchy-system-lock`     |
-| 2 | Logout    | `omarchy-system-logout`   |
+| 2 | Logout    | `omarchy-system logout`   |
 | 3 | Suspend   | `systemctl suspend`       |
 | 4 | Hibernate | `systemctl hibernate`     |
-| 5 | Reboot    | `omarchy-system-reboot`   |
-| 6 | Shutdown  | `omarchy-system-shutdown` |
+| 5 | Reboot    | `omarchy-system reboot`   |
+| 6 | Shutdown  | `omarchy-system shutdown` |
 
 - **Suspend** is hidden when you've turned suspend off in Omarchy.
 - **Hibernate** only shows when hibernation is set up (`omarchy-hibernation-available`).
