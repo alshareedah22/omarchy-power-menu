@@ -19,11 +19,11 @@ Panel {
   // Same commands and availability checks as the built-in Omarchy menu.
   readonly property var allActions: [
     { key: "lock",      icon: "󰌾",  label: "Lock",      command: "omarchy-system-lock",     confirm: false },
-    { key: "logout",    icon: "󰍃", label: "Logout",    command: "omarchy-system-logout",   confirm: true },
+    { key: "logout",    icon: "󰍃", label: "Logout",    command: "omarchy-system logout",   confirm: true },
     { key: "suspend",   icon: "󰒲", label: "Suspend",   command: "systemctl suspend",       confirm: false },
     { key: "hibernate", icon: "󰤁", label: "Hibernate", command: "systemctl hibernate",     confirm: false },
-    { key: "reboot",    icon: "󰜉", label: "Reboot",    command: "omarchy-system-reboot",   confirm: true },
-    { key: "shutdown",  icon: "󰐥", label: "Shutdown",  command: "omarchy-system-shutdown", confirm: true }
+    { key: "reboot",    icon: "󰜉", label: "Reboot",    command: "omarchy-system reboot",   confirm: true },
+    { key: "shutdown",  icon: "󰐥", label: "Shutdown",  command: "omarchy-system shutdown", confirm: true }
   ]
 
   property bool suspendAvailable: true
