@@ -7,11 +7,11 @@ A power button for the Omarchy bar. Click it to open a popup with the system upt
 | # | Action    | Command                   |
 |---|-----------|---------------------------|
 | 1 | Lock      | `omarchy-system-lock`     |
-| 2 | Logout    | `omarchy-system-logout`   |
+| 2 | Logout    | `omarchy system logout`   |
 | 3 | Suspend   | `systemctl suspend`       |
 | 4 | Hibernate | `systemctl hibernate`     |
-| 5 | Reboot    | `omarchy-system-reboot`   |
-| 6 | Shutdown  | `omarchy-system-shutdown` |
+| 5 | Reboot    | `omarchy system reboot`   |
+| 6 | Shutdown  | `omarchy system shutdown` |
 
 - **Suspend** is hidden when you've turned suspend off in Omarchy.
 - **Hibernate** only shows when hibernation is set up (`omarchy-hibernation-available`).
@@ -27,10 +27,17 @@ A power button for the Omarchy bar. Click it to open a popup with the system upt
   above.
 - The button allows only one instance on the bar.
 
+**Compatibility:** works with Omarchy 4.5 (checked on 4.5.0-3: manifest validation, every Omarchy component, command and bar interface it uses, and a live run on a 4.5 bar; this plugin has no automated tests).
+
+## What's new in 1.2.1
+
+Omarchy 4.5: Logout, Reboot and Shutdown now run `omarchy system logout|reboot|shutdown` (4.5 removed `omarchy-system-logout` and friends); older Omarchy versions keep working.
+A failed action now raises a desktop notification, the confirm dialog gets keyboard focus reliably, and pinning looks at every bar section Omarchy 4.5 has.
+
 ## Requirements
 
 - Omarchy 4 (the Quickshell-based `omarchy-shell` bar)
-- Nothing else to install: it uses the `omarchy-system-*` commands, `systemctl`
+- Nothing else to install: it uses Omarchy's `omarchy-system-lock` and `omarchy system logout|reboot|shutdown` (Omarchy 4.5; on older versions it falls back to `omarchy-system-logout` and friends), `systemctl`
   and the Nerd Font icons that ship with Omarchy
 
 ## Install
@@ -42,6 +49,12 @@ omarchy plugin add https://github.com/alshareedah22/omarchy-power-menu.git --ena
 That's all. The button lands at the far right edge of the bar and stays there:
 widgets you add later go to its left. No settings to edit. To put it somewhere
 else, turn pinning off first (see Settings) and then use `omarchy bar move`.
+
+## If an action fails
+
+Logout, reboot, shutdown and the others run detached, so the panel closes right away. When the
+command fails you now get a critical desktop notification ("Logout failed"), if `notify-send` is
+installed.
 
 ## Remove
 

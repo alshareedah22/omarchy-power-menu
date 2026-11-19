@@ -16,14 +16,22 @@ Panel {
   readonly property bool confirmDestructive: setting("confirm", true) !== false
   readonly property bool pinned: setting("pinned", true) !== false
 
+  // Omarchy 4.5 replaced omarchy-system-logout/reboot/shutdown with `omarchy system <action>`
+  // (lock kept its name). Use the old command when it exists, the new one otherwise, so the
+  // buttons work on both.
+  function systemCommand(action) {
+    return "if command -v omarchy-system-" + action + " >/dev/null 2>&1; then omarchy-system-" + action
+      + "; else omarchy system " + action + "; fi"
+  }
+
   // Same commands and availability checks as the built-in Omarchy menu.
   readonly property var allActions: [
     { key: "lock",      icon: "󰌾",  label: "Lock",      command: "omarchy-system-lock",     confirm: false },
-    { key: "logout",    icon: "󰍃", label: "Logout",    command: "omarchy-system-logout",   confirm: true },
+    { key: "logout",    icon: "󰍃", label: "Logout",    command: systemCommand("logout"),   confirm: true },
     { key: "suspend",   icon: "󰒲", label: "Suspend",   command: "systemctl suspend",       confirm: false },
     { key: "hibernate", icon: "󰤁", label: "Hibernate", command: "systemctl hibernate",     confirm: false },
-    { key: "reboot",    icon: "󰜉", label: "Reboot",    command: "omarchy-system-reboot",   confirm: true },
-    { key: "shutdown",  icon: "󰐥", label: "Shutdown",  command: "omarchy-system-shutdown", confirm: true }
+    { key: "reboot",    icon: "󰜉", label: "Reboot",    command: systemCommand("reboot"),   confirm: true },
+    { key: "shutdown",  icon: "󰐥", label: "Shutdown",  command: systemCommand("shutdown"), confirm: true }
   ]
 
   property bool suspendAvailable: true
@@ -59,7 +67,15 @@ Panel {
   function run(action) {
     root.pendingAction = null
     root.close()
-    if (root.bar) root.bar.run(action.command)
+    if (root.bar) root.bar.run(root.withFailureNotice(action))
+  }
+
+  // Actions run detached (a logout or shutdown must outlive the shell), so there is no exit
+  // status to read here. Instead the command itself raises a notification when it fails,
+  // and the panel does not just close and leave you guessing. Labels are fixed strings.
+  function withFailureNotice(action) {
+    return "{ " + action.command + "; } || { command -v notify-send >/dev/null 2>&1 && notify-send -u critical "
+      + "'Power menu' '" + action.label + " failed'; }"
   }
 
   function moveCursor(dy) {
@@ -82,7 +98,8 @@ Panel {
   onPendingActionChanged: {
     if (pendingAction) {
       confirm.selectedIndex = 1
-      confirmKeys.forceActiveFocus()
+      // After the dialog is visible: focus on an item that is still hidden does nothing.
+      Qt.callLater(function() { confirmKeys.forceActiveFocus() })
     } else {
       keyCatcher.forceActiveFocus()
     }
@@ -123,7 +140,8 @@ Panel {
     try { config = JSON.parse(text) } catch (e) { return }
     const layout = config && config.bar && config.bar.layout
     if (!layout) return
-    const inBar = ["left", "center", "right"].some(function(section) {
+    // Every section Omarchy 4.5 has: left, centerBegin, center, centerEnd, right and tray.
+    const inBar = Object.keys(layout).some(function(section) {
       return Array.isArray(layout[section]) && layout[section].some(function(e) { return entryId(e) === root.moduleName })
     })
     if (!inBar) return
