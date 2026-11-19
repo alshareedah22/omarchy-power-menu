@@ -50,6 +50,8 @@ That's all. The button lands at the far right edge of the bar and stays there:
 widgets you add later go to its left. No settings to edit. To put it somewhere
 else, turn pinning off first (see Settings) and then use `omarchy bar move`.
 
+Also listed in the Omarchy plugin marketplace (https://plugins.omarchy.org): search for **Power Menu**.
+
 ## If an action fails
 
 Logout, reboot, shutdown and the others run detached, so the panel closes right away. When the
