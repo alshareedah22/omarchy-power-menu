@@ -43,7 +43,7 @@ A failed action now raises a desktop notification, the confirm dialog gets keybo
 ## Install
 
 ```bash
-omarchy plugin add https://github.com/alshareedah22/omarchy-power-menu.git --enable
+omarchy plugin add https://github.com/blackcodesh/omarchy-power-menu.git --enable
 ```
 
 That's all. The button lands at the far right edge of the bar and stays there:
